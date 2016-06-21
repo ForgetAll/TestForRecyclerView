@@ -1,6 +1,8 @@
 package com.example.luo_pc.testforrecyclerview;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,10 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.luo_pc.testforrecyclerview.bean.ItemBean;
 import com.example.luo_pc.testforrecyclerview.utils.ImageResizer;
@@ -23,7 +28,9 @@ import java.util.ArrayList;
 /**
  * Created by luo-pc on 2016/5/30.
  */
-public class SecondActivity extends AppCompatActivity{
+public class LinearActivity extends AppCompatActivity{
+    private static final String TAG = "SecondActivity";
+
     private ArrayList<ItemBean> itemList;
     private RecyclerView rv_test;
 
@@ -40,6 +47,32 @@ public class SecondActivity extends AppCompatActivity{
         myAdapter.setData(itemList);
         rv_test.setAdapter(myAdapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Context mContext = getApplicationContext();
+        switch (item.getItemId()){
+            case R.id.jump_first:
+                Intent intent = new Intent(mContext,MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.jump_second:
+                Toast.makeText(mContext,"这就是第二个了！",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.jump_third:
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     private void initData(){

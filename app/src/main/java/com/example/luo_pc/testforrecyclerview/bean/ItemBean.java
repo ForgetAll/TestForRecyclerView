@@ -6,9 +6,15 @@ package com.example.luo_pc.testforrecyclerview.bean;
 public class ItemBean {
     private int img;
     private String desc;
+    private String url;
 
     public ItemBean(int img,String desc){
         this.img = img;
+        this.desc = desc;
+    }
+
+    public ItemBean(String url,String desc){
+        this.url = url;
         this.desc = desc;
     }
 
@@ -26,5 +32,13 @@ public class ItemBean {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

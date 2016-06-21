@@ -1,14 +1,19 @@
 package com.example.luo_pc.testforrecyclerview;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.luo_pc.testforrecyclerview.bean.ItemBean;
 import com.example.luo_pc.testforrecyclerview.utils.BitmapMemoryCache;
@@ -17,10 +22,10 @@ import com.example.luo_pc.testforrecyclerview.utils.ImageResizer;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private RecyclerView rv_test;
     private ArrayList<ItemBean> itemList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,37 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.setItemList(itemList);
         rv_test.setAdapter(mAdapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Context mContext = getApplicationContext();
+        switch (item.getItemId()){
+            case R.id.jump_first:
+                Toast.makeText(mContext,"这就是第一个了！",Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.jump_second:
+                Intent intent1 = new Intent(mContext,LinearActivity.class);
+                startActivity(intent1);
+                break;
+
+            case R.id.jump_third:
+                Intent intent2 = new Intent(mContext,GridActivity.class);
+                startActivity(intent2);
+                break;
+
+            default:
+                break;
+        }
+        return true;
     }
 
     private void initData() {
